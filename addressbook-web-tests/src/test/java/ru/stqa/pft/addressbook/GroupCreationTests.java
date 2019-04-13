@@ -37,7 +37,7 @@ public class GroupCreationTests {
   @Test(testName = "Создание нового контакта")
   public void testContactCreation() throws Exception {
     initContactCreation();
-    fillContactForm(new NewContactData("Ivan", "Petrov", "Moscow", "78000005555", "test@test.ru"));
+    fillNewContactForm(new NewContactData("Ivan", "Petrov", "Moscow", "78000005555", "test@test.ru"));
     submitContactCreation();
     returnToContactPage();
   }
@@ -46,7 +46,7 @@ public class GroupCreationTests {
     wd.findElement(By.linkText("add new")).click();
   }
 
-  private void fillContactForm(NewContactData newContactData) {
+  private void fillNewContactForm(NewContactData newContactData) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(newContactData.getFirstname());
