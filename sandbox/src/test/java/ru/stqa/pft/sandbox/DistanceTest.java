@@ -7,12 +7,8 @@ public class DistanceTest  {
 
     @Test(testName = "Проверка расчета расстояния между двумя точками")
     public void testDistance() {
-        Point p = new Point(4, 9);
-        Assert.assertEquals(p.distance(), 3.605551275463989);
-    }
-
-    @Test
-    public void testDistance1() {
-
+        Point p1 = new Point(4, 9);
+        Point p2 = new Point(5,3);
+        Assert.assertEquals(p1.distance(p2), 6.082762530298219);
     }
 }
