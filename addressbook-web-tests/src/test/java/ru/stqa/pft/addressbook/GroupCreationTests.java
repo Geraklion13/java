@@ -25,13 +25,50 @@ public class GroupCreationTests {
     wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).click();
   }
 
-  @Test
+  @Test(testName = "Создание новой группы")
   public void testGroupCreation() throws Exception {
     goToGroupPage();
     initGroupCreation();
     fillGtoupForm(new GroupData("test1", "test2", "test3"));
     submitGroupCreation();
     returnToGroupPage();
+  }
+
+  @Test(testName = "Создание нового контакта")
+  public void testContactCreation() throws Exception {
+    initContactCreation();
+    fillContactForm(new NewContactData("Ivan", "Petrov", "Moscow", "78000005555", "test@test.ru"));
+    submitContactCreation();
+    returnToContactPage();
+  }
+
+  private void initContactCreation() {
+    wd.findElement(By.linkText("add new")).click();
+  }
+
+  private void fillContactForm(NewContactData newContactData) {
+    wd.findElement(By.name("firstname")).click();
+    wd.findElement(By.name("firstname")).clear();
+    wd.findElement(By.name("firstname")).sendKeys(newContactData.getFirstname());
+    wd.findElement(By.name("lastname")).clear();
+    wd.findElement(By.name("lastname")).sendKeys(newContactData.getLastname());
+    wd.findElement(By.name("address")).click();
+    wd.findElement(By.name("address")).clear();
+    wd.findElement(By.name("address")).sendKeys(newContactData.getAddress());
+    wd.findElement(By.name("home")).click();
+    wd.findElement(By.name("home")).clear();
+    wd.findElement(By.name("home")).sendKeys(newContactData.getPhone());
+    wd.findElement(By.name("email")).click();
+    wd.findElement(By.name("email")).clear();
+    wd.findElement(By.name("email")).sendKeys(newContactData.getEmail());
+  }
+
+  private void submitContactCreation() {
+    wd.findElement(By.name("submit")).click();
+  }
+
+  private void returnToContactPage() {
+    wd.findElement(By.linkText("home")).click();
   }
 
   private void returnToGroupPage() {
@@ -50,7 +87,6 @@ public class GroupCreationTests {
     wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
     wd.findElement(By.name("group_footer")).clear();
     wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
-
   }
 
   private void initGroupCreation() {
