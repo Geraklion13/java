@@ -43,4 +43,8 @@ public class GroupHelper extends HelperBase {
     public void submitGroupModification() {
         click(By.cssSelector("input[value='Update']"));
     }
+
+    public void deletingGroup() {
+        click(By.cssSelector("input[value='Delete group(s)']"));
+    }
 }
